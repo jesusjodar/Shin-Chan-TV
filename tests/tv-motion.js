@@ -6,7 +6,9 @@ var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 try{
  check(document.querySelectorAll('.focus-ring').length===0,'No quedan contornos SVG');
  var card=document.querySelector('#episodes [data-index="0"]');card.focus({preventScroll:true});await wait(1200);
- check(getComputedStyle(card).outlineStyle==='none','Sin outline');
+ check(getComputedStyle(card).outlineStyle==='solid','Outline blanco en foco');
+ check(getComputedStyle(card).outlineColor==='rgb(255, 255, 255)','Outline blanco puro');
+ check(getComputedStyle(card).outlineOffset==='0px','Outline sin separación');
  check(Math.abs(new DOMMatrix(getComputedStyle(card).transform).a-1.04)<.001,'Zoom del 4 %');
  var selected=document.querySelector('#seasons .selected');
  check(Math.abs(new DOMMatrix(getComputedStyle(selected).transform).a-1.04)<.001,'Temporada seleccionada con zoom');
