@@ -6,10 +6,13 @@ var PORT = 18766, touched = Date.now();
 function getPage(path, done) {
   if (cache[path] && Date.now()-cache[path].at < (path.indexOf('/api/favorites')===0?300000:3600000)) return done(null, cache[path].html);
   var req = https.get({hostname:'shinchaneros.tv',path:path,headers:{'User-Agent':'Mozilla/5.0','Referer':'https://shinchaneros.tv/'}},function(res){
-    var body = '';
-    res.on('data',function(chunk){body+=chunk; if(body.length>6000000) req.destroy(new Error('Respuesta demasiado grande.'));});
+    // Acumular bytes y decodificar al final: un carácter multibyte (ñ, é…)
+    // puede llegar partido entre dos trozos TCP y romperse al unir texto.
+    var chunks = [], length = 0;
+    res.on('data',function(chunk){chunks.push(chunk); length+=chunk.length; if(length>6000000) req.destroy(new Error('Respuesta demasiado grande.'));});
     res.on('end',function(){
       if (res.statusCode!==200) return done(new Error('ShinChaneros ha respondido con HTTP '+res.statusCode+'.'));
+      var body = joinChunks(chunks);
       cache[path] = {html:body,at:Date.now()}; done(null,body);
     });
   });
@@ -68,6 +71,7 @@ var server = http.createServer(function(req,res){
   }
   json(res,404,{error:'Ruta desconocida.'});
 });
+function joinChunks(chunks){ return Buffer.concat(chunks).toString('utf8'); }
 function start(done){
   if(server.listening) return done(null);
   server.once('error',done);
@@ -75,7 +79,7 @@ function start(done){
 }
 if(process.env.SHINCHAN_PREVIEW==='1') {
   start(function(err){if(err) throw err; console.log(JSON.stringify({base:'http://127.0.0.1:'+PORT,token:token}));});
-} else {
+} else if (require.main===module) {
   var Service = require('webos-service'), service = new Service('com.shinchaneros.tv.service');
   // The app renews this lease; it expires when the app closes.
   service.activityManager.create('videoLease',function(activity){
@@ -84,3 +88,4 @@ if(process.env.SHINCHAN_PREVIEW==='1') {
   service.register('start',function(message){touched=Date.now();start(function(err){message.respond(err?{returnValue:false,errorText:err.message}:{returnValue:true,base:'http://127.0.0.1:'+PORT,token:token});});});
   service.register('ping',function(message){touched=Date.now(); message.respond({returnValue:true});});
 }
+if(typeof module!=='undefined'&&module.exports) module.exports={joinChunks:joinChunks};

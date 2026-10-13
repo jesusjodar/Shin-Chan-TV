@@ -6,14 +6,14 @@ var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 try{
  check(document.querySelectorAll('.focus-ring').length===0,'No quedan contornos SVG');
  var card=document.querySelector('#episodes [data-index="0"]');card.focus({preventScroll:true});await wait(1200);
- check(getComputedStyle(card).outlineStyle==='solid','Outline blanco en foco');
- check(getComputedStyle(card).outlineColor==='rgb(255, 255, 255)','Outline blanco puro');
- check(getComputedStyle(card).outlineOffset==='0px','Outline sin separación');
- check(parseFloat(getComputedStyle(card).borderRadius)>0,'Outline sigue el rounding');
+ check(getComputedStyle(card).outlineStyle==='none','Sin outline rectangular');
+ var ring=getComputedStyle(card).filter;
+ check(ring.indexOf('drop-shadow')>=0,'Anillo en foco');
+ check(/255,\s*255,\s*255/.test(ring),'Anillo blanco puro');
  check(Math.abs(new DOMMatrix(getComputedStyle(card).transform).a-1.04)<.001,'Zoom del 4 %');
  var selected=document.querySelector('#seasons .selected');
  check(Math.abs(new DOMMatrix(getComputedStyle(selected).transform).a-1.04)<.001,'Temporada seleccionada con zoom');
- if(document.activeElement!==selected)check(getComputedStyle(selected).outlineStyle==='none','Seleccionada sin foco no lleva outline');
+ if(document.activeElement!==selected)check(getComputedStyle(selected).outlineStyle==='none'&&getComputedStyle(selected).filter==='none','Seleccionada sin foco no lleva anillo');
  async function horizontal(row,item){
   var start=row.scrollLeft;item.focus({preventScroll:true});
   var target=Math.min(row.scrollWidth-row.clientWidth,Math.max(0,(item.parentElement.classList.contains('ranked-card')?item.parentElement:item).offsetLeft-88));
