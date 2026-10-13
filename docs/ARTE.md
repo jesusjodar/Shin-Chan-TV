@@ -6,6 +6,16 @@ Los iconos cuadrado y panorámico ya estaban incluidos en el repositorio. La ver
 
 ## Banners
 
+### Logo de la cabecera
+
+[PNG transparente](../app/assets/logo-shinchan-decorado.png)
+
+Herramienta: image_gen integrada, con fondo transparente. Referencia: el banner de portada del README. El logo conserva la inscripción «Shin-Chan TV» y a Shin-chan apoyado en la S; se retiraron el fondo, el subtítulo y la decoración del banner. Prompt utilizado:
+
+```text
+Use case: background-extraction. Asset type: transparent PNG wordmark for the home header of Shin-Chan TV. Edit target: the supplied GitHub banner. Extract and recreate only its main logo as a clean alpha cutout: the exact mixed-case yellow lettering 'Shin-Chan' with a small red hyphen and the large red 'TV', together with Shin-chan leaning on the initial S on the left, in his red T-shirt and yellow shorts. Preserve the banner's lettering shapes, glossy flat cartoon highlights, deep navy inner outline and thin white outer stroke, and Shin-chan's pose and face. Exact text: 'Shin-Chan TV'. Remove the dark background, background doodles, houses, grass, bottom-right dog and Chocobi, stars and the subtitle 'Tu rincón de Kasukabe en webOS'. The result is ONLY the original main wordmark plus the leaning Shin-chan, on genuinely transparent alpha. No gradient glow, gray haze, cast shadow, checkerboard pixels or opaque rectangle. Tight horizontal framing approximately 4:1, modest equal transparent margins, no large empty padding. Every letter, the TV and the entire character including shoes must be fully visible, not clipped. This must visually match the logo of the supplied banner rather than inventing a new logo.
+```
+
 ### Capturas
 
 [PNG](images/banner-capturas.png)

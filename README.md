@@ -119,14 +119,14 @@ TV_DEVICE=tv npm run install-tv
 Para elegir un paquete concreto:
 
 ```sh
-TV_DEVICE=tv npm run install-tv -- dist/com.shinchaneros.tv_1.1.2_all.ipk
+TV_DEVICE=tv npm run install-tv -- dist/com.shinchaneros.tv_1.1.3_all.ipk
 ```
 
 Comandos equivalentes sin Bash:
 
 ```sh
 ares-package app service -o dist
-ares-install --device tv dist/com.shinchaneros.tv_1.1.2_all.ipk
+ares-install --device tv dist/com.shinchaneros.tv_1.1.3_all.ipk
 ares-launch --device tv com.shinchaneros.tv
 ```
 
