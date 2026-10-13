@@ -1,6 +1,6 @@
 'use strict';
 var assert = require('assert');
-var server = require('../service/server.js');
+var server = require('../service/utf8.js');
 // Un carácter multibyte (ñ, é…) partido entre dos trozos TCP debe sobrevivir.
 var bytes = Buffer.from('Quieren llevarse a la señorita Matsuzaka', 'utf8');
 for (var i = 1; i < bytes.length - 1; i++) {

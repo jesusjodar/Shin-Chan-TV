@@ -1,6 +1,7 @@
 'use strict';
 var http = require('http'), https = require('https'), url = require('url'), crypto = require('crypto');
 var metadata=require('./metadata'), durations={};
+var utf8=require('./utf8');
 var catalog = require('./catalog'), cache = {}, links = {}, token = crypto.randomBytes(24).toString('hex');
 var PORT = 18766, touched = Date.now();
 function getPage(path, done) {
@@ -12,7 +13,7 @@ function getPage(path, done) {
     res.on('data',function(chunk){chunks.push(chunk); length+=chunk.length; if(length>6000000) req.destroy(new Error('Respuesta demasiado grande.'));});
     res.on('end',function(){
       if (res.statusCode!==200) return done(new Error('ShinChaneros ha respondido con HTTP '+res.statusCode+'.'));
-      var body = joinChunks(chunks);
+      var body = utf8.joinChunks(chunks);
       cache[path] = {html:body,at:Date.now()}; done(null,body);
     });
   });
@@ -71,7 +72,6 @@ var server = http.createServer(function(req,res){
   }
   json(res,404,{error:'Ruta desconocida.'});
 });
-function joinChunks(chunks){ return Buffer.concat(chunks).toString('utf8'); }
 function start(done){
   if(server.listening) return done(null);
   server.once('error',done);
@@ -79,7 +79,7 @@ function start(done){
 }
 if(process.env.SHINCHAN_PREVIEW==='1') {
   start(function(err){if(err) throw err; console.log(JSON.stringify({base:'http://127.0.0.1:'+PORT,token:token}));});
-} else if (require.main===module) {
+} else {
   var Service = require('webos-service'), service = new Service('com.shinchaneros.tv.service');
   // The app renews this lease; it expires when the app closes.
   service.activityManager.create('videoLease',function(activity){
@@ -88,4 +88,3 @@ if(process.env.SHINCHAN_PREVIEW==='1') {
   service.register('start',function(message){touched=Date.now();start(function(err){message.respond(err?{returnValue:false,errorText:err.message}:{returnValue:true,base:'http://127.0.0.1:'+PORT,token:token});});});
   service.register('ping',function(message){touched=Date.now(); message.respond({returnValue:true});});
 }
-if(typeof module!=='undefined'&&module.exports) module.exports={joinChunks:joinChunks};
