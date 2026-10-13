@@ -1,0 +1,5 @@
+node_modules/
+*.ipk
+*.tgz
+.DS_Store
+/dist/

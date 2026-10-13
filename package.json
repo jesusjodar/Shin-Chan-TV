@@ -1,0 +1,11 @@
+{
+  "name": "shin-chan-tv",
+  "version": "1.13.9",
+  "description": "App webOS TV para ver Shin-chan (shinchaneros.tv)",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "package": "bash scripts/package.sh",
+    "install-tv": "bash scripts/install-tv.sh"
+  }
+}

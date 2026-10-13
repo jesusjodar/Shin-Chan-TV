@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shin-Chan TV</title><link rel="stylesheet" href="style.css"></head><body>
+<div id="pattern" aria-hidden="true"></div>
+<svg width="0" height="0" class="shape-definitions" aria-hidden="true"><defs id="shapeDefinitions"></defs></svg>
+<main id="menu">
+  <div id="shelves">
+  <div class="home-header">
+  <div class="home-brand"><img src="assets/logo-shinchan-decorado.png" alt="Shinchan"></div>
+  <div class="header-actions">
+  <button id="sleepHeader" class="head-btn" aria-label="Dormir: brillo bajo, volumen 5 y apagado en 2 horas"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M42 25.58A18 18 0 1 1 22.42 6 14 14 0 0 0 42 25.58Z"/></svg></button>
+  <button id="continueBtn" class="continue-btn" hidden><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 10Q18 7 21 9L39 22Q42 24 39 26L21 39Q18 41 18 38Z" fill="currentColor" stroke="none"/></svg><span>Seguir viendo</span></button>
+  <button id="shuffleBtn" class="head-btn shuffle" aria-label="Aleatorio: reproducir episodios al azar"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12h8l16 24h8m0 0-6-6m6 6-6 6M8 36h8l4-6m6-12 6-6h8m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+  </div>
+  <section class="shelf" id="shelf-episodes">
+  <h2 class="shelf-title">Todos los episodios</h2>
+  <nav id="seasons" aria-label="Temporadas"></nav>
+  <section id="episodes" class="carousel" aria-label="Episodios de la temporada"></section>
+  <section class="details" aria-live="polite" aria-atomic="true"><h1 id="episodeTitle"></h1><p id="episodeDescription"></p><div id="movieProgress" class="watch-progress details-progress" role="progressbar" aria-label="Progreso guardado de la película" aria-valuemin="0" aria-valuemax="100" hidden><i></i></div><p id="storageWarning" hidden></p></section>
+  </section></div>
+  <nav id="rowDots" aria-hidden="true"></nav>
+</main>
+<img class="home-frame" src="assets/marco-kasukabe-v2.png" alt="" aria-hidden="true" draggable="false">
+<section id="player" hidden>
+  <video id="video" preload="metadata" playsinline></video>
+  <div id="controls">
+    <div class="play-info"><div class="play-titles"><h1 id="playingTitle"></h1><p id="playingDescription"></p></div><div id="nextCard" hidden><p class="next-label">Siguiente episodio</p><div class="next-thumb"><img id="nextImg" alt=""></div><p id="nextTitle"></p></div></div>
+    <div class="timeline"><div class="progress" role="progressbar" aria-label="Progreso del episodio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="buffered"></i><i id="progress"></i><i id="thumb"></i></div><div class="timeline-labels"><span id="elapsed">0:00</span><span id="duration">—</span></div></div>
+    <div class="actions">
+      <button id="sleep" class="icon-button auxiliary" aria-label="Dormir: brillo mínimo, volumen 5 y apagado en 2 horas"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M42 25.58A18 18 0 1 1 22.42 6 14 14 0 0 0 42 25.58Z"/></svg></button>
+      <div class="actions-mid">
+      <button id="rewind" class="icon-button" aria-label="Retroceder 30 segundos"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M23 10Q23 8 21 10L4 22Q1 24 4 26L21 38Q23 40 23 38Z M44 10Q44 8 42 10L25 22Q22 24 25 26L42 38Q44 40 44 38Z"/></svg></button>
+      <button id="toggle" class="icon-button" aria-label="Pausar"><svg viewBox="0 0 48 48" aria-hidden="true"><g id="pauseGlyph"><rect x="11" y="8" width="9" height="32" rx="2"/><rect x="28" y="8" width="9" height="32" rx="2"/></g><path id="playGlyph" d="M12 8Q12 5 15 7L39 22Q42 24 39 26L15 41Q12 43 12 40Z" hidden/></svg></button>
+      <button id="forward" class="icon-button" aria-label="Adelantar 30 segundos"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 10Q4 8 6 10L23 22Q26 24 23 26L6 38Q4 40 4 38Z M25 10Q25 8 27 10L44 22Q47 24 44 26L27 38Q25 40 25 38Z"/></svg></button>
+      </div>
+      <div class="actions-edge">
+      <button id="next" class="icon-button auxiliary" aria-label="Siguiente episodio"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 10Q8 7 11 9L33 22Q36 24 33 26L11 39Q8 41 8 38Z"/><rect x="36" y="9" width="6" height="30" rx="2"/></svg></button>
+      <button id="back" class="icon-button auxiliary" aria-label="Volver a los episodios"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="7" width="13" height="13" rx="3"/><rect x="28" y="7" width="13" height="13" rx="3"/><rect x="7" y="28" width="13" height="13" rx="3"/><rect x="28" y="28" width="13" height="13" rx="3"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="loader" role="status" aria-label="Cargando"><div class="loading-character"><img id="loadingCharacter" src="assets/shiro.png" alt=""></div></div>
+<div id="error" hidden role="alert"><div><h2>Un pequeño descanso…</h2><p id="errorText"></p><button id="retry" class="primary">Reintentar</button><button id="dismiss">Volver al menú</button></div></div>
+<script src="squircle.js"></script><script src="app.js"></script></body></html>

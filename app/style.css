@@ -1,0 +1,119 @@
+:root{--section-gap:56px}
+@font-face{font-family:'Crayon Shinchan';src:url('assets/crayon-shinchan.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Crayon Bold';src:url('assets/crayon-bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+*{box-sizing:border-box}
+@keyframes pattern-drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(800px,800px,0)}}
+#pattern{position:fixed;left:-800px;top:-800px;width:calc(100% + 800px);height:calc(100% + 800px);z-index:0;pointer-events:none;background:url('assets/patron-shinchan.png') repeat;background-size:800px 800px;opacity:.055;will-change:transform;animation:pattern-drift 126s linear infinite}
+html,body{margin:0;width:100%;height:100%;background:var(--p-bg,#0b0b0e);color:#fff;font-family:Arial,sans-serif;font-size:24px;overflow:hidden}
+[hidden]{display:none!important}
+button{font:inherit;color:#fff;background:#171717;border:0;border-radius:18px;padding:17px 28px;cursor:pointer;transition:transform .18s ease-out}
+button:focus,button.selected{outline:none;transform:scale(1.04)}
+button:disabled{opacity:.4}
+.primary{background:#fff;color:#000;font-weight:600}
+.shape-definitions{position:absolute;pointer-events:none}
+#menu{position:relative;height:100%;overflow:hidden;z-index:1;-webkit-mask-image:linear-gradient(to bottom,#000 86%,transparent 98%);mask-image:linear-gradient(to bottom,#000 86%,transparent 98%)}
+#shelves{position:absolute;top:0;left:0;width:100%;will-change:transform;transition:transform .24s ease-out;z-index:1}
+.shelf{position:relative;padding:26px 0 4px}
+.shelf-title{height:54px;margin:0 0 var(--section-gap);padding:0 88px;display:block;line-height:54px;font-family:'Crayon Bold','Crayon Shinchan','Chalkboard SE','Comic Sans MS',cursive;font-size:46px;font-weight:700;color:#fff;letter-spacing:.5px;text-shadow:0 2px 0 rgba(0,0,0,.65)}
+.home-brand{position:relative;margin:0 0 0 88px;height:187px;pointer-events:none}
+.home-header{display:flex;align-items:center;justify-content:space-between;margin:30px 88px 12px 0}
+.continue-btn{display:flex;align-items:center;gap:14px;background:#1e1e22;color:#fff;border:0;border-radius:999px;padding:16px 30px;font-size:26px;font-weight:600}
+.continue-btn svg{width:32px;height:32px;flex:0 0 auto}
+.header-actions{display:flex;align-items:center;gap:16px}
+.head-btn{display:flex;align-items:center;justify-content:center;width:64px;height:64px;padding:0;background:#1e1e22;color:#fff;border:0;border-radius:50%}
+.head-btn svg{width:34px;height:34px;flex:0 0 auto;fill:currentColor}
+.head-btn.shuffle{margin-left:12px}
+body .icon-button,body .head-btn,body .continue-btn{color:var(--p-light,#fff)}
+#seasons button.selected .season-surface{background-color:var(--p-light,#ffd6e0);color:#000}
+#sleep.on,#sleepHeader.on{background-color:var(--p-light,#ffd6e0);color:#000}
+#shelf-favorites .carousel{padding-left:24px}
+.home-brand img{display:block;width:800px;height:187px;object-fit:contain;object-position:left center}
+.home-frame{position:fixed;left:0;bottom:0;width:100%;height:auto;pointer-events:none;user-select:none;opacity:.45;z-index:0}
+#rowDots{position:fixed;left:20px;top:50%;transform:translateY(-50%);background:#3f3f46;border-radius:999px;padding:16px 0;width:34px;display:flex;flex-direction:column;align-items:center;gap:14px;z-index:4;pointer-events:none}
+.row-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.45)}
+.row-dot.on{background:#fff}
+#seasons{display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;height:110px;padding:14px 88px 42px;margin:0;scrollbar-width:none}
+#seasons button{flex:0 0 auto;position:relative;padding:0;background:transparent;color:#929296;border-radius:0;font-size:22px}
+.season-surface{display:block;padding:14px 23px;background:#161616;color:inherit}
+#seasons button.selected{color:#000}
+#seasons button.selected .season-surface{background:#fff}
+#seasons button:focus:not(.selected){color:#fff}
+.carousel{position:relative;display:flex;gap:32px;overflow-x:auto;overflow-y:hidden;padding:18px 88px 18px;width:100%;height:272.25px;scrollbar-width:none}
+.carousel::-webkit-scrollbar,#seasons::-webkit-scrollbar{display:none}
+.episode{will-change:transform;position:relative;flex:0 0 420px;width:420px;height:236.25px;aspect-ratio:16/9;padding:0;background:transparent;border-radius:0}
+.episode:focus,#seasons button:focus{outline:none}
+.card-surface{position:absolute;inset:0;background:#151515;opacity:1;transition:opacity .15s}
+.episode:focus .card-surface{opacity:1}
+.episode img{display:block;width:100%;height:100%;object-fit:cover;opacity:.78}
+.episode:focus img{opacity:1}
+.episode .badge{position:absolute;bottom:15px;background:rgba(0,0,0,.78);border-radius:13px;padding:7px 12px;font-size:20px;line-height:1.15;font-weight:500;font-variant-numeric:tabular-nums;pointer-events:none}
+.episode .duration{right:15px}
+.details{height:auto;margin:var(--section-gap) 88px 30px;padding:0 28px;max-width:1420px;width:fit-content;position:relative;z-index:0}
+.details h1,.details p{width:fit-content;max-width:100%}
+.details::before{content:'';position:absolute;inset:-26px 0;background:#232329;border-radius:28px;z-index:-1;pointer-events:none}
+.details h1,.play-info h1{margin:0;font-size:56px;line-height:1.2;font-weight:600;color:#fff;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.details p,.play-info p{margin:14px 0 0;font-size:28px;line-height:1.5;font-weight:400;color:#8f8f95;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#storageWarning{font-size:20px;color:#aaa}
+#player{position:fixed;inset:0;background:#000}
+video{width:100%;height:100%;object-fit:contain}
+#controls{position:absolute;bottom:0;width:100%;padding:180px 88px 54px;background:linear-gradient(transparent,rgba(0,0,0,.9) 45%,rgba(0,0,0,.97));transition:opacity .25s}
+#controls.quiet{opacity:0;pointer-events:none}
+.play-info{margin-bottom:34px;display:flex;justify-content:space-between;align-items:flex-end;gap:48px}
+.play-titles{max-width:1420px;min-width:0}
+#nextCard{flex:0 0 340px;width:340px}
+.next-label{margin:0 0 12px;font-family:'Crayon Bold','Crayon Shinchan','Chalkboard SE','Comic Sans MS',cursive;font-size:30px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.65)}
+.next-thumb{width:340px;height:191px;border-radius:18px;overflow:hidden;background:#151515}
+.next-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+#nextTitle{margin:12px 0 0;font-size:26px;line-height:1.3;color:#fff;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.progress{height:12px;background:rgba(255,255,255,.25);border-radius:999px;overflow:visible;position:relative}
+.progress i{display:block;height:100%;width:0;background:#fff;border-radius:999px}
+#buffered{position:absolute;left:0;top:0;bottom:0;background:rgba(255,255,255,.35)}
+#progress{position:relative;z-index:1}
+#thumb{position:absolute;top:50%;left:0;width:24px;height:24px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);pointer-events:none;z-index:2}
+.timeline-labels{display:flex;justify-content:space-between;font-size:24px;color:#aaa;font-variant-numeric:tabular-nums;margin-top:15px}
+.actions{display:flex;align-items:center;justify-content:space-between;gap:22px;margin-top:23px;position:relative}
+.actions-mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:22px}
+.actions-edge{display:flex;align-items:center;gap:0}
+.icon-button{display:flex;align-items:center;justify-content:center;flex:0 0 96px;width:96px;height:96px;padding:0;background:transparent;border-radius:50%;color:#fff}
+.icon-button:focus{background:transparent}
+.icon-button svg{width:43px;height:43px;fill:currentColor}
+.icon-button.auxiliary{color:#aaa;margin:0 32px}
+.icon-button.auxiliary svg{width:31px;height:31px}
+.icon-button.auxiliary:focus{color:#fff}
+#sleep{color:#fff}
+#sleep.on{background:#fff;color:#000}
+#loader,#error{position:fixed;inset:0;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:5}
+#loader{background:#000}
+.loading-character{width:180px;height:180px}
+.loading-character img{width:100%;height:100%;object-fit:contain;animation:spin 2.8s linear infinite}
+#error>div{max-width:850px;padding:60px;background:#161616;border-radius:28px}
+#error h2{font-size:34px;margin:0}
+#error p{line-height:1.5;color:#a5a5ad}
+#error button{margin:20px 15px 0 0}
+@keyframes spin{to{transform:rotate(360deg)}}
+body .card-surface,body .season-surface,body .collection-retry,body .continue-btn,body .head-btn,body .details::before,body #rowDots,body .next-thumb,body #error>div{background-color:var(--p-surface,#151515)}
+@media(prefers-reduced-motion:reduce){.loading-character img{animation:none}#pattern{animation:none}html,body{animation:none}button,#shelves,.card-surface,#controls{transition:none}.card-surface,.season-surface,.collection-retry,.continue-btn,.head-btn,.details::before,#rowDots,.next-thumb,#error>div,.icon-button,.title-badge,#sleep.on,#sleepHeader.on,#seasons button.selected .season-surface{animation:none}}
+
+.shelf:not(.active) .details{display:none}
+.poster-carousel{height:336px}
+.poster{flex-basis:200px;width:200px;height:300px;aspect-ratio:2/3}
+.ranked-card{position:relative;flex:0 0 auto;padding-left:153px;display:flex;align-items:flex-end}
+.rank{position:absolute;left:0;bottom:-13px;font-family:'Crayon Bold','Crayon Shinchan',cursive;font-size:224px;font-weight:700;line-height:1;color:#888;letter-spacing:-20px;pointer-events:none;user-select:none}
+.ranked-card.double-rank{padding-left:238px}
+.ranked-card.double-rank .rank{font-size:190px;letter-spacing:-22px;bottom:-9px}
+.ranked-card:focus-within .rank{color:#bbb}
+.collection-retry{margin:18px 88px;height:236px;background:#151515;max-width:600px}
+#player{z-index:6}
+#loader,#error{z-index:8}
+.ranked-card .card-surface{opacity:1;background:#000}
+.ranked-card .card-surface img{opacity:.78}
+.ranked-card .episode:focus .card-surface img{opacity:1}
+
+.details p:empty{display:none}
+.watch-progress{height:7px;border-radius:999px;background:rgba(255,255,255,.28);overflow:hidden;pointer-events:none}
+.watch-progress i{display:block;height:100%;background:#fff;border-radius:inherit}
+.card-surface .watch-progress{position:absolute;left:20px;right:20px;bottom:13px}
+.episode.has-progress .badge{bottom:32px}
+.details-progress{width:420px;height:9px;margin-top:20px}
+.title-badge{display:inline-block;background-color:var(--p-light,#ffd6e0);color:#000;border-radius:14px;padding:4px 14px;font-family:Arial,sans-serif;font-weight:700;font-size:24px;line-height:1.2;vertical-align:middle;margin-right:16px;position:relative;top:-3px}
+#episodeDescription b,#playingDescription b{font-weight:700}

@@ -1,0 +1,1 @@
+{"id":"com.shinchaneros.tv.service","services":[{"name":"com.shinchaneros.tv.service","commands":[{"name":"start","public":true},{"name":"ping","public":true}]}]}
