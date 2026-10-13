@@ -68,7 +68,7 @@ App webOS TV para ver Shin-chan desde `shinchaneros.tv`.
 
 ## 8. Empaquetado
 
-1. `appinfo.json`: `com.shinchaneros.tv` v1.13.9, `1920x1080`.
+1. `appinfo.json`: `com.shinchaneros.tv` v1.0.0, `1920x1080`.
 2. Salida: `dist/*.ipk` vía `ares-package app service`.
 
 ## 9. Iconos

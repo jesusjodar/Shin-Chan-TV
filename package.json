@@ -1,6 +1,6 @@
 {
   "name": "shin-chan-tv",
-  "version": "1.13.9",
+  "version": "1.0.0",
   "description": "App webOS TV para ver Shin-chan (shinchaneros.tv)",
   "private": true,
   "scripts": {

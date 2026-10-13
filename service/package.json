@@ -1,6 +1,6 @@
 {
   "name": "com.shinchaneros.tv.service",
-  "version": "1.13.9",
+  "version": "1.0.0",
   "description": "Catálogo y reproducción de ShinChaneros",
   "main": "server.js"
 }
