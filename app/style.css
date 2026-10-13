@@ -7,7 +7,8 @@
 html,body{margin:0;width:100%;height:100%;background:var(--p-bg,#0b0b0e);color:#fff;font-family:Arial,sans-serif;font-size:24px;overflow:hidden}
 [hidden]{display:none!important}
 button{font:inherit;color:#fff;background:#171717;border:0;border-radius:18px;padding:17px 28px;cursor:pointer;transition:transform .18s ease-out}
-button:focus,button.selected{outline:4px solid #fff;outline-offset:0;transform:scale(1.04)}
+button:focus{outline:4px solid #fff;outline-offset:0;transform:scale(1.04)}
+button.selected{transform:scale(1.04)}
 button:disabled{opacity:.4}
 .primary{background:#fff;color:#000;font-weight:600}
 .shape-definitions{position:absolute;pointer-events:none}
@@ -33,15 +34,15 @@ body .icon-button,body .head-btn,body .continue-btn{color:var(--p-light,#fff)}
 .row-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.45)}
 .row-dot.on{background:#fff}
 #seasons{display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;height:110px;padding:14px 88px 42px;margin:0;scrollbar-width:none}
-#seasons button{flex:0 0 auto;position:relative;padding:0;background:transparent;color:#929296;border-radius:0;font-size:22px}
+#seasons button{flex:0 0 auto;position:relative;padding:0;background:transparent;color:#929296;border-radius:999px;font-size:22px}
 .season-surface{display:block;padding:14px 23px;background:#161616;color:inherit}
 #seasons button.selected{color:#000}
 #seasons button.selected .season-surface{background:#fff}
 #seasons button:focus:not(.selected){color:#fff}
 .carousel{position:relative;display:flex;gap:32px;overflow-x:auto;overflow-y:hidden;padding:18px 88px 18px;width:100%;height:272.25px;scrollbar-width:none}
 .carousel::-webkit-scrollbar,#seasons::-webkit-scrollbar{display:none}
-.episode{will-change:transform;position:relative;flex:0 0 420px;width:420px;height:236.25px;aspect-ratio:16/9;padding:0;background:transparent;border-radius:0}
-.episode:focus,#seasons button:focus{outline:4px solid #fff;outline-offset:0}
+.episode{will-change:transform;position:relative;flex:0 0 420px;width:420px;height:236.25px;aspect-ratio:16/9;padding:0;background:transparent;border-radius:48px}
+.episode.poster{border-radius:32px}
 .card-surface{position:absolute;inset:0;background:#151515;opacity:1;transition:opacity .15s}
 .episode:focus .card-surface{opacity:1}
 .episode img{display:block;width:100%;height:100%;object-fit:cover;opacity:.78}

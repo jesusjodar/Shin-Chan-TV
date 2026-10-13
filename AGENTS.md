@@ -15,7 +15,7 @@ Estilo: directo, numerado, sin rodeos.
 ## 2. Reglas
 
 1. Mantén `com.shinchaneros.tv` y `com.shinchaneros.tv.service` sincronizados en `appinfo.json`, `services.json` y `server.js`.
-2. Foco visible: `outline: 4px solid #fff; outline-offset: 0` + `transform: scale(1.04)` en `app/style.css:10,44`.
+2. Foco único en `button:focus` (`app/style.css:10`): `outline: 4px solid #fff; outline-offset: 0` + `scale(1.04)`; `.selected` sin outline; radios 48px episodios, 32px pósters, 999px temporadas para que el outline siga el rounding.
 3. Guarda progreso solo en `shinchan-tv-v1`; no reintroduzcas claves antiguas.
 4. Añade test en `tests/` por cada parser o cambio de navegación.
 5. Verifica con `npm test` antes de empaquetar.

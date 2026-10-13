@@ -1,8 +1,6 @@
 # Shin-Chan TV
 
-App webOS TV para ver Shin-chan desde `shinchaneros.tv`. ID `com.shinchaneros.tv`, nombre en launcher **Shin-Chan TV**.
-
-![Banner](docs/images/banner.png)
+App webOS TV para ver Shin-chan desde `shinchaneros.tv`.
 
 ## Índice
 
@@ -20,7 +18,7 @@ App webOS TV para ver Shin-chan desde `shinchaneros.tv`. ID `com.shinchaneros.tv
 ## 1. Características
 
 1. Catálogo por temporadas, películas, favoritos, especiales, viajes y miedo.
-2. Zoom al foco sin outlines, scroll suave en carruseles y temporadas.
+2. Foco con outline blanco pegado + zoom, scroll suave en carruseles y temporadas.
 3. Progreso guardado en `shinchan-tv-v1`, seguir viendo y duraciones reales MP4.
 4. Reproductor con siguiente episodio, aleatorio y modo dormir.
 

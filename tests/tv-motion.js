@@ -9,9 +9,11 @@ try{
  check(getComputedStyle(card).outlineStyle==='solid','Outline blanco en foco');
  check(getComputedStyle(card).outlineColor==='rgb(255, 255, 255)','Outline blanco puro');
  check(getComputedStyle(card).outlineOffset==='0px','Outline sin separación');
+ check(parseFloat(getComputedStyle(card).borderRadius)>0,'Outline sigue el rounding');
  check(Math.abs(new DOMMatrix(getComputedStyle(card).transform).a-1.04)<.001,'Zoom del 4 %');
  var selected=document.querySelector('#seasons .selected');
  check(Math.abs(new DOMMatrix(getComputedStyle(selected).transform).a-1.04)<.001,'Temporada seleccionada con zoom');
+ if(document.activeElement!==selected)check(getComputedStyle(selected).outlineStyle==='none','Seleccionada sin foco no lleva outline');
  async function horizontal(row,item){
   var start=row.scrollLeft;item.focus({preventScroll:true});
   var target=Math.min(row.scrollWidth-row.clientWidth,Math.max(0,(item.parentElement.classList.contains('ranked-card')?item.parentElement:item).offsetLeft-88));
