@@ -6,19 +6,24 @@ var catalog = require('./catalog'), cache = {}, links = {}, token = crypto.rando
 var PORT = 18766, touched = Date.now();
 function getPage(path, done) {
   if (cache[path] && Date.now()-cache[path].at < (path.indexOf('/api/favorites')===0?300000:3600000)) return done(null, cache[path].html);
+  var completed=false;
+  function finish(err,value){if(completed)return;completed=true;done(err,value);}
   var req = https.get({hostname:'shinchaneros.tv',path:path,headers:{'User-Agent':'Mozilla/5.0','Referer':'https://shinchaneros.tv/'}},function(res){
     // Acumular bytes y decodificar al final: un carácter multibyte (ñ, é…)
     // puede llegar partido entre dos trozos TCP y romperse al unir texto.
     var chunks = [], length = 0;
     res.on('data',function(chunk){chunks.push(chunk); length+=chunk.length; if(length>6000000) req.destroy(new Error('Respuesta demasiado grande.'));});
+    res.on('error',finish);
+    res.on('aborted',function(){finish(new Error('La respuesta del catálogo se ha interrumpido.'));});
     res.on('end',function(){
-      if (res.statusCode!==200) return done(new Error('ShinChaneros ha respondido con HTTP '+res.statusCode+'.'));
+      if(completed)return;
+      if (res.statusCode!==200) return finish(new Error('ShinChaneros ha respondido con HTTP '+res.statusCode+'.'));
       var body = utf8.joinChunks(chunks);
-      cache[path] = {html:body,at:Date.now()}; done(null,body);
+      cache[path] = {html:body,at:Date.now()}; finish(null,body);
     });
   });
   req.setTimeout(20000,function(){req.destroy(new Error('La web tarda demasiado en responder.'));});
-  req.on('error',done);
+  req.on('error',finish);
 }
 function mediaPage(key){return key.indexOf('movie/')===0?'/movies/'+key.slice(6):'/seasons/'+key;}
 function json(res,status,value){if(res.writableEnded) return; res.writeHead(status,{'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Cache-Control':'no-store'}); res.end(JSON.stringify(value));}

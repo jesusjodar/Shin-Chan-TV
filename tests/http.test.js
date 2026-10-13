@@ -1,0 +1,20 @@
+const assert=require('node:assert'),fs=require('node:fs'),vm=require('node:vm'),{EventEmitter}=require('node:events');
+const source=fs.readFileSync(require.resolve('../service/server.js'),'utf8');
+const start=source.indexOf('function getPage('),end=source.indexOf('function mediaPage(');assert(start>=0&&end>start);
+let response,request,calls=0;
+const context={cache:{},Date,Error,utf8:require('../service/utf8'),https:{get(options,callback){
+ calls++;request=new EventEmitter();request.setTimeout=(ms,fn)=>request.timeout=fn;request.destroy=e=>request.emit('error',e);
+ response=new EventEmitter();response.statusCode=200;callback(response);return request;
+}}};
+vm.createContext(context);vm.runInContext(source.slice(start,end),context);
+let results=[];context.getPage('/partial',(err,value)=>results.push({err,value}));
+response.emit('data',Buffer.from('partial'));response.emit('aborted');
+assert.equal(results.length,1,'An aborted catalogue response must fail instead of hanging');assert(results[0].err);
+assert.doesNotThrow(()=>response.emit('error',new Error('reset')),'Response errors must not crash the service');
+request.emit('error',new Error('socket'));response.emit('end');assert.equal(results.length,1,'A single failed request must complete once');assert(!context.cache['/partial']);
+results=[];context.getPage('/ok',(err,value)=>results.push({err,value}));response.emit('data',Buffer.from('España'));response.emit('end');
+assert.equal(results.length,1);assert.equal(results[0].value,'España');assert(!results[0].err);
+const cachedCalls=calls;context.getPage('/ok',(err,value)=>{assert(!err);assert.equal(value,'España');});assert.equal(calls,cachedCalls);
+results=[];context.getPage('/timeout',err=>results.push(err));request.timeout();response.emit('error',new Error('reset'));assert.equal(results.length,1);assert(results[0]);
+results=[];context.getPage('/bad-status',err=>results.push(err));response.statusCode=503;response.emit('end');assert.equal(results.length,1);assert(results[0]);assert(!context.cache['/bad-status']);
+console.log('OK: aborted/error/timeout responses fail once without caching partial data, successful UTF-8 responses cache, and upstream HTTP errors are rejected.');

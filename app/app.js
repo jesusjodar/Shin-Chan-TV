@@ -142,7 +142,7 @@ function drawShelf(shelf){
   var row=shelf.carousel;releaseShapes(row);row.textContent='';
   var RANK_PEEK={'1':70,'2':103,'3':103,'4':103,'5':90,'6':103,'7':103,'8':103,'9':103};
   shelf.items.forEach(function(e,i){
-    var b=button('',function(){shuffleQueue=[];play(e);});b.className='episode'+(e.kind==='movie'?' poster':'');b.dataset.key=key(e);b.dataset.index=i;b.dataset.row=shelves.indexOf(shelf);b.dataset.episode=e.id||'';
+    var b=button('',function(){shuffleQueue=[];shufflePool=[];play(e);});b.className='episode'+(e.kind==='movie'?' poster':'');b.dataset.key=key(e);b.dataset.index=i;b.dataset.row=shelves.indexOf(shelf);b.dataset.episode=e.id||'';
     b.setAttribute('aria-label',label(e));
     if(shelf.id==='favorites'){
       var wrapper=document.createElement('div');wrapper.className='ranked-card'+(e.rank>9?' double-rank':'');
@@ -181,7 +181,7 @@ function initShelves(){
     shelves.push({id:pair[0],title:pair[1],items:[],index:0,element:element,carousel:carousel});
   });
   rowDots=[];var nav=$('rowDots');shelves.forEach(function(){var d=document.createElement('span');d.className='row-dot';nav.appendChild(d);rowDots.push(d);});
-  $('continueBtn').onclick=function(){if(state.last){shuffleQueue=[];play(state.last);}};
+  $('continueBtn').onclick=function(){if(state.last){shuffleQueue=[];shufflePool=[];play(state.last);}};
   refreshContinue();
   paintSleep();
   Array.prototype.forEach.call(document.querySelectorAll('.shelf-title'),paintTitleWords);
@@ -211,7 +211,11 @@ function loadSeason(s,done){
 function save(){if(!current||!isFinite(video.currentTime)||!video.duration)return;state.last=current;state.positions[key(current)]=video.currentTime;persist();}
 function controls(){clearTimeout(hideTimer);$('controls').classList.remove('quiet');if(!video.paused)hideTimer=setTimeout(function(){$('controls').classList.add('quiet');},4500);}
 function play(e){
-  if(!current)lastFocus={row:activeRow,index:shelves[activeRow].index};
+  if(!current){
+    var row=activeRow;
+    if(!shelves[row].items.some(function(item){return key(item)===key(e);}))row=e.kind==='movie'?1:0;
+    lastFocus={row:row,index:shelves[row].index};
+  }
   current=e;state.last=e;persist();$('error').hidden=true;$('menu').hidden=true;$('player').hidden=false;refreshNextCard();
   $('playingTitle').innerHTML=titleHTML(e);$('playingDescription').innerHTML=descHTML(e);loading(true);
   var chosen=key(e);
@@ -224,7 +228,7 @@ function play(e){
 }
 function peekNext(){if(shuffleQueue.length)return shuffleQueue[0];if(!current)return null;var previous=current;
   function same(a,b){return key(a)===key(b);}
-  if(lastFocus&&lastFocus.row>0){var shelf=shelves[lastFocus.row];if(shelf){var at=shelf.items.findIndex(function(e){return same(e,previous);});if(at>=0&&shelf.items[at+1])return shelf.items[at+1];}return null;}
+  if(lastFocus&&lastFocus.row>0){var shelf=shelves[lastFocus.row];if(shelf){var at=shelf.items.findIndex(function(e){return same(e,previous);});if(at>=0)return shelf.items[at+1]||null;}}
   var at2=episodes.findIndex(function(e){return same(e,previous);});
   if(at2>=0&&episodes[at2+1])return episodes[at2+1];return null;}
 function refreshNextCard(){var card=$('nextCard');if(!card)return;var n=peekNext();
@@ -234,7 +238,7 @@ function refreshNextCard(){var card=$('nextCard');if(!card)return;var n=peekNext
   $('nextImg').alt='';
   $('nextTitle').textContent=n.headline||(n.title||'').split(' · ')[0];}
 function back(){
-  var previous=current;save();shuffleQueue=[];if(previous&&lastFocus){var at=shelves[lastFocus.row].items.findIndex(function(e){return key(e)===key(previous);});if(at>=0)lastFocus.index=at;}current=null;video.pause();video.removeAttribute('src');video.load();loading(false);
+  var previous=current;save();shuffleQueue=[];shufflePool=[];if(previous&&lastFocus){var at=shelves[lastFocus.row].items.findIndex(function(e){return key(e)===key(previous);});if(at>=0)lastFocus.index=at;}current=null;video.pause();video.removeAttribute('src');video.load();loading(false);
   $('error').hidden=true;$('player').hidden=true;$('menu').hidden=false;clearTimeout(hideTimer);
   if(previous)cardDuration(previous);
   var target=lastFocus||{row:0,index:0};focusCard(target.row,target.index);loadDurations();
@@ -250,8 +254,9 @@ function toggle(){
   }else video.pause();controls();
 }
 function next(){
-  if(!current)return;save();shuffleQueue=[];var previous=current;
-  if(lastFocus&&lastFocus.row>0){var shelf=shelves[lastFocus.row],at=shelf.items.findIndex(function(e){return key(e)===key(previous);});if(shelf.items[at+1]){lastFocus.index=at+1;return play(shelf.items[at+1]);}return back();}
+  if(!current)return;save();shuffleQueue=[];shufflePool=[];var previous=current;
+  if(lastFocus&&lastFocus.row>0){var shelf=shelves[lastFocus.row],at=shelf.items.findIndex(function(e){return key(e)===key(previous);});if(at>=0){if(shelf.items[at+1]){lastFocus.index=at+1;return play(shelf.items[at+1]);}return back();}}
+  if(previous.kind==='movie')return back();
   function choose(){
     var at=episodes.findIndex(function(e){return key(e)===key(previous);});
     if(at>=0&&episodes[at+1])return play(episodes[at+1]);

@@ -119,14 +119,14 @@ TV_DEVICE=tv npm run install-tv
 Para elegir un paquete concreto:
 
 ```sh
-TV_DEVICE=tv npm run install-tv -- dist/com.shinchaneros.tv_1.1.1_all.ipk
+TV_DEVICE=tv npm run install-tv -- dist/com.shinchaneros.tv_1.1.2_all.ipk
 ```
 
 Comandos equivalentes sin Bash:
 
 ```sh
 ares-package app service -o dist
-ares-install --device tv dist/com.shinchaneros.tv_1.1.1_all.ipk
+ares-install --device tv dist/com.shinchaneros.tv_1.1.2_all.ipk
 ares-launch --device tv com.shinchaneros.tv
 ```
 
@@ -236,7 +236,7 @@ npm run check
 npm test
 ```
 
-Las pruebas automáticas cubren catálogo, colecciones, rechazo de datos inválidos, cabeceras MP4, caracteres UTF-8 partidos entre paquetes, arranque, consultas de duración, geometría e instalación simulada. No necesitan la TV ni reproducen vídeo.
+Las pruebas automáticas cubren catálogo, colecciones, rechazo de datos inválidos, cabeceras MP4, caracteres UTF-8 partidos entre paquetes, conexiones interrumpidas, arranque, consultas de duración, salida del modo aleatorio, contexto de episodios/películas al reanudar, geometría e instalación simulada. No necesitan la TV ni reproducen vídeo.
 
 GitHub Actions ejecuta esas comprobaciones y genera un IPK en cada cambio de `main` o pull request.
 

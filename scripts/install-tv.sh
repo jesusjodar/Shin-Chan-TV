@@ -1,5 +1,5 @@
 #!/bin/bash
-# Uso: TV_DEVICE=tv npm run install-tv -- dist/com.shinchaneros.tv_1.1.1_all.ipk
+# Uso: TV_DEVICE=tv npm run install-tv -- dist/com.shinchaneros.tv_1.1.2_all.ipk
 set -euo pipefail
 cd "$(dirname "$0")/.."
 IPK="${1:-}"
