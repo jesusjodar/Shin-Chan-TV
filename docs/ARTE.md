@@ -6,6 +6,18 @@ Los iconos cuadrado y panorámico ya estaban incluidos en el repositorio. La ver
 
 ## Banners
 
+### Capturas
+
+[PNG](images/banner-capturas.png)
+
+Herramienta: image_gen integrada. Referencias: banner de Personalización y marco de Kasukabe. Prompt utilizado:
+
+```text
+Use case: illustration-story. Asset type: new ultrawide 3:1 GitHub README section banner for Shin-Chan TV. Input images: Image 1 is a visual style reference only, match its dark plum background, playful bold hand-drawn lettering, pastel accents and crisp Shinchan object illustration; Image 2 is a supporting reference for Kasukabe scenery and Nevado. Primary request: a coordinated new banner for the screenshot gallery. Text (verbatim): 'Capturas', large pastel blue/ivory cartoon letters on center-left, perfectly spelled C-a-p-t-u-r-a-s with generous margins. On the right a small flat illustrated television with a blue screen and curled-up white Nevado, beside a green Chocobi box and a small camera with a yellow strap. Gentle grass and tiny daisies along the bottom, very subtle low-contrast Shinchan object doodles in the dark background. Warm flat 2D illustration, thick clean outlines, abundant negative space. All objects and letters fully inside the frame. Only the word Capturas. No UI screenshots, no mock browser window, no extra text, no watermark. Landscape ratio 3:1.
+```
+
+Las seis imágenes `captura-*.jpg` son capturas de la app en Google Chrome 155, a 1920 × 1080, con el catálogo real. No son imágenes generadas ni contienen el historial personal de la TV. La captura de carga usa una demora temporal en la resolución del vídeo para registrar el loader que ya muestra la app.
+
 ### Portada
 
 [PNG](images/banner.png)

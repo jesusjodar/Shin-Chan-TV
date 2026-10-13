@@ -13,16 +13,17 @@ Proyecto de [@jesusjodar](https://github.com/jesusjodar). No oficial y sin afili
 ## Índice
 
 1. [Qué incluye](#qué-incluye)
-2. [Requisitos](#requisitos)
-3. [Instalación](#instalación)
-4. [Uso con el mando](#uso-con-el-mando)
-5. [Personalización](#personalización)
-6. [Iconos y recursos](#iconos-y-recursos)
-7. [Cómo funciona](#cómo-funciona)
-8. [Estructura del proyecto](#estructura-del-proyecto)
-9. [Pruebas y contribuciones](#pruebas-y-contribuciones)
-10. [Problemas frecuentes](#problemas-frecuentes)
-11. [Créditos y aviso](#créditos-y-aviso)
+2. [Capturas](#capturas)
+3. [Requisitos](#requisitos)
+4. [Instalación](#instalación)
+5. [Uso con el mando](#uso-con-el-mando)
+6. [Personalización](#personalización)
+7. [Iconos y recursos](#iconos-y-recursos)
+8. [Cómo funciona](#cómo-funciona)
+9. [Estructura del proyecto](#estructura-del-proyecto)
+10. [Pruebas y contribuciones](#pruebas-y-contribuciones)
+11. [Problemas frecuentes](#problemas-frecuentes)
+12. [Créditos y aviso](#créditos-y-aviso)
 
 ## Qué incluye
 
@@ -39,11 +40,29 @@ Proyecto de [@jesusjodar](https://github.com/jesusjodar). No oficial y sin afili
 | Carga | Personaje girando sobre negro desde el HTML inicial. |
 | Accesibilidad | Etiquetas para controles, foco visible y respeto de `prefers-reduced-motion`. |
 
-![Vista del catálogo de Shin-Chan TV](docs/images/interfaz.jpg)
-
-Vista de la interfaz con el catálogo de pruebas, sin historial personal.
-
 **Modo dormir:** intenta aplicar imagen Expert 2, brillo 25, volumen 5 y apagado en dos horas. Necesita las funciones de ejecución de Homebrew Channel y los ajustes compatibles de la TV. Modifica ajustes reales de imagen, volumen y temporizador; al desactivarlo vuelve a Vivid y brillo 100, y cancela ese temporizador.
+
+## Capturas
+
+![Capturas — Shin-Chan TV](docs/images/banner-capturas.png)
+
+Capturas reales en **Google Chrome a 1920 × 1080**, con el catálogo del proveedor y un perfil sin historial personal. La imagen y las fuentes pueden variar ligeramente en la TV según su versión de webOS.
+
+### Inicio y temporadas
+
+![Inicio con la primera temporada, tarjetas de episodios y el marco de Kasukabe](docs/images/captura-inicio.jpg)
+
+| Películas | Favoritos |
+| --- | --- |
+| ![Colección de películas con pósters y duración](docs/images/captura-movies.jpg) | ![Ranking de favoritos con número de puesto y likes](docs/images/captura-favorites.jpg) |
+
+| Especiales | Reproductor |
+| --- | --- |
+| ![Episodios especiales y su descripción](docs/images/captura-specials.jpg) | ![Vídeo con la línea de tiempo, siguiente episodio y foco circular](docs/images/captura-player.jpg) |
+
+### Pantalla de carga
+
+![Personaje de Shin-chan girando sobre fondo negro mientras carga el vídeo](docs/images/captura-carga.jpg)
 
 ## Requisitos
 
