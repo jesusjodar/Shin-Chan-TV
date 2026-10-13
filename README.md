@@ -8,7 +8,7 @@ Aplicación personal para **LG webOS TV** que consulta el catálogo de [ShinChan
 
 [![Comprobaciones](https://github.com/jesusjodar/Shin-Chan-TV/actions/workflows/ci.yml/badge.svg)](https://github.com/jesusjodar/Shin-Chan-TV/actions/workflows/ci.yml) ![webOS TV](https://img.shields.io/badge/webOS-TV-0679CA) ![JavaScript](https://img.shields.io/badge/JavaScript-sin_framework-F7DF1E?labelColor=202027)
 
-Proyecto de [@jesusjodar](https://github.com/jesusjodar). No oficial y sin afiliación con ShinChaneros, LG ni los titulares de Shin-chan.
+**Aviso:** Este proyecto no aloja episodios ni películas de terceros; utiliza el catálogo y los enlaces de ShinChaneros. ShinChaneros y su sitio web pertenecen a sus responsables. Los derechos de Shin-chan y sus personajes se acreditan a **Yoshito Usui / Futabasha, Shin-Ei Animation, TV Asahi y ADK**, según los [créditos oficiales](https://shin-ei-animation.jp/works/shinchan/). Todas las marcas registradas pertenecen a sus respectivos titulares.
 
 ## Índice
 
@@ -266,6 +266,6 @@ Para contribuir:
 
 Aplicación y mantenimiento: **[@jesusjodar](https://github.com/jesusjodar)**. Los banners y varias ilustraciones se han creado con generación de imágenes tomando como referencia los assets de la app; sus prompts están en [docs/ARTE.md](docs/ARTE.md).
 
-El catálogo y el vídeo dependen de ShinChaneros y sus servidores; los datos complementarios y pósters incluyen material de TMDB. Las marcas, personajes y demás recursos de terceros pertenecen a sus titulares. El proyecto no declara una licencia general que cubra esos recursos.
+El catálogo y los enlaces de reproducción proceden de ShinChaneros; los datos complementarios y pósters incluyen material de TMDB. Las marcas, personajes y demás recursos de terceros pertenecen a sus titulares. El proyecto no declara una licencia general que cubra esos recursos.
 
 Consulta [el aviso del proyecto](docs/AVISO-LEGAL.md). La disponibilidad del proveedor y la compatibilidad de cada TV quedan fuera del control de esta app.
