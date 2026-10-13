@@ -4,7 +4,7 @@
 2. La app no aloja, almacena ni distribuye ningún contenido audiovisual en servidores propios ni en el dispositivo.
 3. Todo el vídeo, imágenes de catálogo y metadatos se enlazan o retransmiten desde servidores de terceros en el momento de la reproducción.
 4. El servicio local solo actúa como proxy en memoria (`127.0.0.1:18766`): no guarda vídeos, solo caché temporal en RAM y progreso local (`localStorage`).
-5. Si eres titular de derechos y quieres una retirada o corrección, abre un issue en el repositorio.
+5. Contacto DMCA y retiradas: `jesusjodarpiernas@gmail.com`. Si eres titular de derechos y quieres una retirada o corrección, escribe a ese correo o abre un issue en el repositorio.
 
 ## Orígenes de terceros
 
