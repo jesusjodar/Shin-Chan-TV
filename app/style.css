@@ -45,7 +45,7 @@ body .icon-button,body .head-btn,body .continue-btn{color:var(--p-light,#fff)}
 .episode.poster{border-radius:32px}
 .card-surface{position:absolute;inset:0;background:#151515;opacity:1;transition:opacity .15s}
 .episode:focus .card-surface{opacity:1}
-.episode img{display:block;width:100%;height:100%;object-fit:cover;opacity:.78}
+.episode img{display:block;width:100%;height:100%;object-fit:cover;opacity:.6}
 .episode:focus img{opacity:1}
 .episode .badge{position:absolute;bottom:15px;background:rgba(0,0,0,.78);border-radius:13px;padding:7px 12px;font-size:20px;line-height:1.15;font-weight:500;font-variant-numeric:tabular-nums;pointer-events:none}
 .episode .duration{right:15px}
@@ -107,7 +107,7 @@ body .card-surface,body .season-surface,body .collection-retry,body .continue-bt
 #player{z-index:6}
 #loader,#error{z-index:8}
 .ranked-card .card-surface{opacity:1;background:#000}
-.ranked-card .card-surface img{opacity:.78}
+.ranked-card .card-surface img{opacity:.6}
 .ranked-card .episode:focus .card-surface img{opacity:1}
 
 .details p:empty{display:none}
