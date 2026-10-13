@@ -1,11 +1,15 @@
 {
   "name": "shin-chan-tv",
-  "version": "1.1.0",
-  "description": "App webOS TV para ver Shin-chan (shinchaneros.tv)",
+  "version": "1.1.1",
+  "description": "Shin-Chan TV para LG webOS: temporadas, películas, progreso local y navegación con mando.",
   "private": true,
   "scripts": {
     "test": "node --test tests/*.test.js",
+    "check": "node --check app/app.js && node --check app/squircle.js && node --check service/server.js && node --check service/catalog.js && node --check service/metadata.js && node --check service/mp4.js && node --check service/utf8.js",
     "package": "bash scripts/package.sh",
     "install-tv": "bash scripts/install-tv.sh"
-  }
+  },
+  "engines": {"node": ">=20"},
+  "author": "jesusjodar",
+  "repository": {"type": "git", "url": "https://github.com/jesusjodar/Shin-Chan-TV.git"}
 }

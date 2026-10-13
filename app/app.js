@@ -17,7 +17,6 @@ function updateProgress(bar,e){
 }
 function time(t){t=Math.max(0,Math.floor(t||0));return Math.floor(t/60)+':'+('0'+t%60).slice(-2);}
 var loadingAssets=['assets/shiro.png','assets/carga-shinchan.png','assets/carga-buriburizaemon.png','assets/carga-chocobi.png'];
-var loadingIndex=0,loadingTimer=null;
 var loadingPreloads=loadingAssets.map(function(src){var image=new Image();image.src=src;return image;});
 function nextLoadingCharacter(){
   var image=$('loadingCharacter'),i;
@@ -27,7 +26,7 @@ function nextLoadingCharacter(){
 }
 function loading(show){
   var wasVisible=!$('loader').hidden;$('loader').hidden=!show;
-  if(!show){if(loadingTimer){clearInterval(loadingTimer);loadingTimer=null;}return;}
+  if(!show)return;
   if(wasVisible)return;
   nextLoadingCharacter();
 }
@@ -214,7 +213,7 @@ function controls(){clearTimeout(hideTimer);$('controls').classList.remove('quie
 function play(e){
   if(!current)lastFocus={row:activeRow,index:shelves[activeRow].index};
   current=e;state.last=e;persist();$('error').hidden=true;$('menu').hidden=true;$('player').hidden=false;refreshNextCard();
-  var parts=e.title.split(' · ');$('playingTitle').innerHTML=titleHTML(e);$('playingDescription').innerHTML=descHTML(e);loading(true);
+  $('playingTitle').innerHTML=titleHTML(e);$('playingDescription').innerHTML=descHTML(e);loading(true);
   var chosen=key(e);
   api('/resolve/'+chosen,function(err,data){
     if(!current||key(current)!==chosen)return;

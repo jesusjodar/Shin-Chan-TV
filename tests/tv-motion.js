@@ -8,8 +8,8 @@ try{
  var card=document.querySelector('#episodes [data-index="0"]');card.focus({preventScroll:true});await wait(1200);
  check(getComputedStyle(card).outlineStyle==='none','Sin outline rectangular');
  var ring=getComputedStyle(card).filter;
- check(ring.indexOf('drop-shadow')>=0,'Anillo en foco');
- check(/255,\s*255,\s*255/.test(ring),'Anillo blanco puro');
+ check(ring.indexOf('focus-outline')>=0,'Anillo compartido en foco');
+ check(document.querySelector('#focus-outline feMorphology').getAttribute('radius')==='2','Anillo de 2 px');
  check(Math.abs(new DOMMatrix(getComputedStyle(card).transform).a-1.04)<.001,'Zoom del 4 %');
  var selected=document.querySelector('#seasons .selected');
  check(Math.abs(new DOMMatrix(getComputedStyle(selected).transform).a-1.04)<.001,'Temporada seleccionada con zoom');
@@ -27,6 +27,6 @@ try{
  card.focus({preventScroll:true});await wait(1200);
  await horizontal(document.getElementById('seasons'),document.querySelectorAll('#seasons button')[6]);
  check(JSON.stringify((JSON.parse(localStorage.getItem('shinchan-tv-v1')||'{}')||{}).positions)===JSON.stringify(positions),'Historial conservado');
- return 'OK: zoom, sin contornos, scroll suave vertical/horizontal/temporadas y progreso conservado';
+ return 'OK: zoom, anillo fino, scroll suave vertical/horizontal/temporadas y progreso conservado';
 }finally{if(original&&original.isConnected)original.focus({preventScroll:true});}
 })();

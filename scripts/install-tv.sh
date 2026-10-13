@@ -1,14 +1,15 @@
 #!/bin/bash
-# Instala el .ipk en la TV por SSH/ares. Uso: TV_IP=192.168.1.50 bash scripts/install-tv.sh dist/*.ipk
+# Uso: TV_DEVICE=tv npm run install-tv -- dist/com.shinchaneros.tv_1.1.1_all.ipk
 set -euo pipefail
-IPK="${1:-$(ls -t dist/*.ipk 2>/dev/null | head -n 1)}"
+cd "$(dirname "$0")/.."
+IPK="${1:-}"
+if [ -z "$IPK" ]; then
+  IPK=$(ls -t dist/*.ipk 2>/dev/null | head -n 1 || true)
+fi
 if [ -z "${IPK:-}" ] || [ ! -f "$IPK" ]; then
   echo "No hay .ipk. Ejecuta antes: npm run package"
   exit 1
 fi
-if [ -z "${TV_IP:-}" ]; then
-  echo "Define TV_IP. Ejemplo: TV_IP=192.168.1.50 bash scripts/install-tv.sh"
-  exit 1
-fi
-ares-install --device tv "$IPK"
-ares-launch --device tv com.shinchaneros.tv
+DEVICE="${TV_DEVICE:-tv}"
+ares-install --device "$DEVICE" "$IPK"
+ares-launch --device "$DEVICE" com.shinchaneros.tv

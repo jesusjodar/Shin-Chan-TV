@@ -1,7 +1,14 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shin-Chan TV</title><link rel="stylesheet" href="style.css"></head><body>
 <div id="pattern" aria-hidden="true"></div>
-<svg width="0" height="0" class="shape-definitions" aria-hidden="true"><defs id="shapeDefinitions"></defs></svg>
+<svg width="0" height="0" class="shape-definitions" aria-hidden="true"><defs id="shapeDefinitions">
+  <filter id="focus-outline" x="-10%" y="-10%" width="120%" height="120%">
+    <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="expanded"/>
+    <feFlood flood-color="#fff"/>
+    <feComposite in2="expanded" operator="in"/>
+    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs></svg>
 <main id="menu">
   <div id="shelves">
   <div class="home-header">
