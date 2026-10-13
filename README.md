@@ -80,5 +80,6 @@ App webOS TV para ver Shin-chan desde `shinchaneros.tv`.
 
 ## 10. Licencia y aviso
 
-1. Uso personal, sin afiliación con Shin-chan ni shinchaneros.tv.
-2. La app no aloja vídeo, solo enlaza medios de terceros.
+1. Uso personal, sin afiliación con los titulares citados en `docs/AVISO-LEGAL.md`.
+2. La app no aloja contenido en servidores ni en el dispositivo; solo enlaza y retransmite contenido alojado en servidores de terceros.
+3. Marcas: `Shin-chan` y personajes de Yoshito Usui / UY Studio, Shin-Ei Animation, TV Asahi y ADK; `webOS` de LG Electronics; `TMDB` de sus titulares. Detalle en `docs/AVISO-LEGAL.md`.
